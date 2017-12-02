@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
-c = [int(d) for d in input("Captcha: ")]
-
+with open('day1.input') as f:
+    c = [int(d) for d in f.read()]
+    
 r1, r2 = 0, 0
 h = len(c) // 2
 for i in range(len(c)):
