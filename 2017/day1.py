@@ -10,4 +10,4 @@ for i in range(len(c)):
     e = c[(i+h) % len(c)]
     r2 += c[i] == e and e
  
-print((r1, r2))
+print("Solutions: [{}] [{}]".format(r1, r2))
