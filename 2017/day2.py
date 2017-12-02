@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
-print("Spreadsheet: ")
-s = []
-while True:
-    l = input()
-    if not l:
-        break
-    s.append([int(d) for d in l.split('\t')])
+with open('day2.input') as f:
+    s = [[int(d) for d in l.split('\t')]
+         for l in f.readlines()]
 
 r1, r2 = sum([max(d) - min(d) for d in s]), 0
 for l in s:
