@@ -15,7 +15,7 @@ def spiral(limit):
     n, x, y, i = 1, 0, 0, 0
     r1, r2 = 1, 0
     while True:
-        for l in range(i // 2 + 1):
+        for _ in range(i // 2 + 1):
             n += 1
             x += d[i % 4][0]
             y += d[i % 4][1]
