@@ -7,9 +7,9 @@ d = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 s = {(0, 0): 1}
 
 nsum = lambda x, y: sum([
-    s.get((x + n[0], y + n[1]), 0)
-    for n in [(dx, dy) for dx in (0, 1, -1)
-              for dy in (0, 1, -1)]])
+    s.get((x + dx, y + dy), 0)
+    for dx in (0, 1, -1)
+    for dy in (0, 1, -1)])
 
 def spiral(limit):
     n, x, y, i = 1, 0, 0, 0
