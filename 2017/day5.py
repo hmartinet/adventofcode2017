@@ -4,16 +4,17 @@
 with open('day5.input') as f:
     s = [int(d.strip()) for d in f.readlines()]
 
-def execute(m, increment):
+def execute(s, increment):
+    m, size = s.copy(), len(s)
     cursor, step = 0, 0
     while True:
         step += 1
         current = cursor
         cursor += m[current]
         m[current] += increment(m[current])
-        if cursor >= len(m) or cursor < 0:
+        if cursor < 0 or cursor >= size:
             return step
 
 print("Solutions: [{}] [{}]".format(
-    execute(list(s), lambda v: 1),
-    execute(list(s), lambda v: v >= 3 and -1 or 1)))
+    execute(s, lambda v: 1),
+    execute(s, lambda v: v >= 3 and -1 or 1)))
