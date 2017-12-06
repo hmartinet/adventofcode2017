@@ -3,9 +3,9 @@
 
 with open('day6.input') as f:
     b = [int(n.strip()) for n in f.read().split('\t')]
-h = [b.copy()]
 
 def execute():
+    h = [b.copy()]
     step = 0
     while True:
         step += 1
