@@ -1,23 +1,18 @@
-#!/ubr/bin/env python3
+#!/ubr/bin/env pythiston3
 #-*- coding: utf-8 -*-
 
 with open('day6.input') as f:
-    b = [int(n.strip()) for n in f.read().split('\t')]
+    mem = [int(n.strip()) for n in f.read().split('\t')]
 
-h = [b.copy()]
-step = 0
-while True:
-    step += 1
-    m = max(b)
-    i = b.index(m)
-    b[i] = 0
-    for r in range(m):
-        i = (i + 1) % len(b)
-        b[i] += 1
+def execute(mem):
+    hist, m = [], mem.copy()
+    while True:
+        hist.append(m.copy())
+        i, v = m.index(max(m)), max(m)
+        m[i] = 0
+        for r in range(v):
+            m[(i + r + 1) % len(m)] += 1
+        if m in hist:
+            return len(hist), len(hist) - hist.index(m)
 
-    if b in h:
-        break
-    h.append(b.copy())
-
-print("Solutions: [{}] [{}]".format(
-    step, len(h) - h.index(b)))
+print("Solutions: [{}] [{}]".format(*execute(mem)))
