@@ -4,20 +4,20 @@
 with open('day6.input') as f:
     b = [int(n.strip()) for n in f.read().split('\t')]
 
-def execute():
-    h = [b.copy()]
-    step = 0
-    while True:
-        step += 1
-        m = max(b)
-        i = b.index(m)
-        b[i] = 0
-        for r in range(m):
-            i = (i + 1) % len(b)
-            b[i] += 1
+h = [b.copy()]
+step = 0
+while True:
+    step += 1
+    m = max(b)
+    i = b.index(m)
+    b[i] = 0
+    for r in range(m):
+        i = (i + 1) % len(b)
+        b[i] += 1
 
-        if b in h:
-            return step, len(h) - h.index(b)
-        h.append(b.copy())
+    if b in h:
+        break
+    h.append(b.copy())
 
-print("Solutions: [{}] [{}]".format(*execute()))
+print("Solutions: [{}] [{}]".format(
+    step, len(h) - h.index(b)))
