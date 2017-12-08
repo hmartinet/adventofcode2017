@@ -2,11 +2,12 @@
 #-*- coding: utf-8 -*-
 
 import re
+import sys
 
 parser = re.compile(r'^(.*) (inc|dec) (-?[0-9]+) if ([a-z]*) (.*)$')
 
 reg = {}
-m = 0
+m = -sys.maxsize
 
 with open('day8.input') as f:
     for l in f.readlines():
