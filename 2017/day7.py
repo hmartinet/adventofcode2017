@@ -4,50 +4,45 @@
 import operator
 from functools import reduce
 from pprint import pprint
+import re
 
-weights = {}
-inputs = {}
-with open('day7.input') as f:
-    for l in f.readlines():
-        e = [s.strip() for s in l.split(' ')]
-        weights[e[0]] = int(e[1][1:-1])
-        if len(e) > 3:
-            inputs[e[0]] = ''.join(e[3:]).split(',')
-        else:
-            inputs[e[0]] = []
+re_line = re.compile(r'^(.*) \(([0-9]*)\)( -> )?(.*)?$')
+     
+def parseinput():
+    res = {}
+    with open('day7.input') as f:
+        for l in f.readlines():
+            n, w, _, cstr = re_line.match(l).groups()
+            res[n] = int(w), cstr and cstr.split(', ') or []
+    return res, next(iter(set(res.keys()) - 
+                          set(c for v in res.values() for c in v[1])))
 
-def findroot():
-    childs = {ck: k for k, v in inputs.items() for ck in v}
-    for node in weights.keys():
-        if node not in childs:
-            return node
+class Node():
+    def __init__(self, data, name, parent):
+        self.name = name
+        self.weight = data[name][0]
+        self.parent = parent
+        self.children = {child: Node(data, child, self) 
+                         for child in data[name][1]}
+        
+    def deep_weight(self):
+        return self.weight + sum(n.deep_weight() 
+                                 for n in self.children.values())
 
-def buildtree(tree, node):
-    return {child: buildtree({}, child) for child in inputs[node]}
-            
-def weight(node, tree):
-    return sum(weight(*i) for i in tree.items()) + weights[node]  
+    def find_unbalanced(self):
+        weights = [n.deep_weight() for n in self.children.values()]
+        for c, n in self.children.items():
+            if weights.count(n.deep_weight()) == 1:
+                return n.find_unbalanced()
+        return self
 
-def findpath(tree):
-    wm = {k: weight(k, v) for k, v in tree.items()}
-    for n in wm.keys():
-        if list(wm.values()).count(wm[n]) == 1:
-            return [n] + findpath(tree[n])
-    return []
-    
-def main():
-    root = findroot()
-    tree = buildtree({}, root)
+data, root_name = parseinput()
+root = Node(data, root_name, None)
 
-    path = findpath(tree)
-    enode = path[-1]
-    etree = reduce(operator.getitem, path[:-1], tree)
-    cnode = [n for n in etree.keys() if n != enode][0]
+enode = root.find_unbalanced()
+cnode = enode.parent.children[[n for n in enode.parent.children.keys() 
+                               if n != enode.name][0]]
 
-    print("Solutions: [{}] [{}]".format(
-        root, 
-        weights[enode] + 
-        weight(cnode, etree[cnode]) - weight(enode, etree[enode])))
-
-main()
-
+print("Solutions: [{}] [{}]".format(
+    root.name, 
+    enode.weight + cnode.deep_weight() - enode.deep_weight()))
