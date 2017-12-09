@@ -4,7 +4,7 @@
 with open('day9.input') as f:
     s = f.read()
 
-m = [0, 0, 0]
+m = 0, 0, 0
 res = 0, 0
 parse = lambda m: {
     '!': not m[0] and (1, 0, 0),
