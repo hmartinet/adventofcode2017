@@ -19,5 +19,4 @@ for c in s:
            res[1] + (m[1] and not p[1] and not p[0] and 1))
     m = [mi + p[i] for i, mi in enumerate(m)]
 
-print("Solutions: [{}] [{}]".format(res1, res2))
-
+print("Solutions: [{}] [{}]".format(*res))
