@@ -24,7 +24,7 @@ class Node():
         
     def deep_weight(self):
         return self.weight + sum(
-            n.deep_weight() for n in self.children.values())
+            [n.deep_weight() for n in self.children.values()])
 
     def find_unbalanced(self):
         weights = [n.deep_weight() for n in self.children.values()]
