@@ -17,6 +17,6 @@ for c in s:
     p = parser(m).get(c) or (m[0] and -1 or 0, 0, 0)
     res = (res[0] + (p[2] == -1 and m[2]),
            res[1] + (m[1] and not p[1] and not p[0] and 1))
-    m = tuple(m[i] + p[i] for i in range(3))
+    m = tuple([m[i] + p[i] for i in range(3)])
 
 print("Solutions: [{}] [{}]".format(*res))
