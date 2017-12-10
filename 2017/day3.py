@@ -3,15 +3,13 @@
 
 input = 361527
 
-d = [(1, 0), (0, 1), (-1, 0), (0, -1)]
-s = {(0, 0): 1}
-
-nsum = lambda x, y: sum([
-    s.get((x + dx, y + dy), 0)
-    for dx in (0, 1, -1)
-    for dy in (0, 1, -1)])
-
 def spiral(limit):
+    d = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+    s = {(0, 0): 1}
+    nsum = lambda x, y: sum([
+        s.get((x + dx, y + dy), 0)
+        for dx in (0, 1, -1)
+        for dy in (0, 1, -1)])
     n, x, y, i = 1, 0, 0, 0
     r1, r2 = 1, 0
     while True:
@@ -26,6 +24,5 @@ def spiral(limit):
             if r1 and r2:
                 return r1, r2
         i += 1
-
 
 print("Solutions: [{}] [{}]".format(*spiral(input)))
