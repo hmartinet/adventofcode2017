@@ -9,7 +9,7 @@ def hash(data, rnd=64, ext=[17, 31, 73, 47, 23]):
     lengths.extend(ext)
     h = list(range(256))
     cr, skip = 0, 0
-    for r in range(rnd):
+    for _ in range(rnd):
         for l in lengths:
             sl = [h[(cr+i)%256] for i in range(l)][::-1]
             for i in range(l):
