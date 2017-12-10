@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
-import operator
-from functools import reduce
-from pprint import pprint
 import re
 
 re_line = re.compile(r'^(.*) \(([0-9]*)\)( -> )?(.*)?$')
@@ -14,8 +11,8 @@ def parseinput():
         for l in f.readlines():
             n, w, _, cstr = re_line.match(l).groups()
             res[n] = int(w), cstr and cstr.split(', ') or []
-    return res, next(iter(set(res.keys()) - 
-                          set(c for v in res.values() for c in v[1])))
+    return res, next(iter(set(res.keys()) -
+                          set(sum([v[1] for v in res.values()], []))))
 
 class Node():
     def __init__(self, data, name, parent):
@@ -26,8 +23,8 @@ class Node():
                          for child in data[name][1]}
         
     def deep_weight(self):
-        return self.weight + sum(n.deep_weight() 
-                                 for n in self.children.values())
+        return self.weight + sum(
+            n.deep_weight() for n in self.children.values())
 
     def find_unbalanced(self):
         weights = [n.deep_weight() for n in self.children.values()]
