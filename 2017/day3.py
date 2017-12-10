@@ -5,7 +5,7 @@ input = 361527
 
 d = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
-nsum = lambda x, y: sum([
+nsum = lambda s, x, y: sum([
     s.get((x + dx, y + dy), 0)
     for dx in (0, 1, -1)
     for dy in (0, 1, -1)])
@@ -21,8 +21,10 @@ def spiral(limit):
             y += d[i % 4][1]
             r1 = n == limit and abs(x) + abs(y)
             if not r2:
-                s[x, y] = nsum(x, y)
+                s[x, y] = nsum(s, x, y)
                 r2 = s[x, y] >= limit and s[x, y]
             if r1 and r2:
                 return r1, r2
         i += 1
+
+print("Solutions: [{}] [{}]".format(*spiral(input)))
