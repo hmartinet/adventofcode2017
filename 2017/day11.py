@@ -14,7 +14,7 @@ def distance(c):
 md = 0
 c = 0, 0
 for step in path:
-   c =  c[0] + coord[step][0], c[1] + coord[step][1]
+   c =  tuple(c[i] + coord[step][i] for i in range(2))
    md = max(md, distance(c))
 
 print("Solutions: [{}] [{}]".format(distance(c), md))
