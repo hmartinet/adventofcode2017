@@ -13,7 +13,7 @@ with open('day12.input') as f:
             int(e) for e in m.group(2).split(', ')]
 
 def walk(s, prog, bp):
-    bp.add(prog)
+    bp |= {prog}
     for p in set(s[prog]) - bp:
         bp.update(walk(s, p, bp))
     return bp
