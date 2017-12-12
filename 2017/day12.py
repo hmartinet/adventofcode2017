@@ -5,22 +5,25 @@ import re
 
 parse = re.compile(r"^([0-9]+) <-> (.*)$")
 
-s = {}
-with open('day12.input') as f:
-    for l in f.readlines():
-        m = parse.match(l)
-        s[int(m.group(1))] = [
-            int(e) for e in m.group(2).split(', ')]
-
 def walk(s, prog, bp):
     bp |= {prog}
-    for p in set(s[prog]) - bp:
-        bp.update(walk(s, p, bp))
+    for p in s[prog] - bp:
+        bp |= walk(s, p, bp)
     return bp
 
-groups = []
-for p in s.keys():
-    if p not in [e for g in groups for e in g]:
-        groups.append(walk(s, p, set()))
+def main():
+    s = {}
+    with open('day12.input') as f:
+        for l in f.readlines():
+            m = parse.match(l)
+            s[int(m.group(1))] = {
+                int(e) for e in m.group(2).split(', ')}
 
-print("Solutions: [{}] [{}]".format(len(groups[0]), len(groups)))
+    groups, keys = [], set()
+    for p in filter(lambda k: k not in keys, s.keys()):
+        groups.append(walk(s, p, set()))
+        keys |= groups[-1]
+
+    print("Solutions: [{}] [{}]".format(len(groups[0]), len(groups)))
+    
+main()
