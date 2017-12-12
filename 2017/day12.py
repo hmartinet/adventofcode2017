@@ -5,11 +5,11 @@ import re
 
 parse = re.compile(r"^([0-9]+) <-> (.*)$")
 
-def walk(s, prog, bp):
-    bp |= {prog}
-    for p in s[prog] - bp:
-        bp |= walk(s, p, bp)
-    return bp
+def walk(s, prog, group):
+    group |= {prog}
+    for p in s[prog] - group:
+        group |= walk(s, p, group)
+    return group
 
 def main():
     s = {}
