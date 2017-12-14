@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-input = 361527
+inpt = 361527
 
 d = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
-nsum = lambda s, x, y: sum([
-    s.get((x + dx, y + dy), 0)
-    for dx in (0, 1, -1)
-    for dy in (0, 1, -1)])
+
+def nsum(s, x, y):
+    return sum([s.get((x + dx, y + dy), 0)
+                for dx in (0, 1, -1)
+                for dy in (0, 1, -1)])
+
 
 def spiral(limit):
     s = {(0, 0): 1}
@@ -27,4 +29,5 @@ def spiral(limit):
                 return r1, r2
         i += 1
 
-print("Solutions: [{}] [{}]".format(*spiral(input)))
+
+print("Solutions: [{}] [{}]".format(*spiral(inpt)))

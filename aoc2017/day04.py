@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-with open('day4.input') as f:
+with open('input/day04') as f:
     ps = [l.strip().split(' ') for l in f.readlines()]
 
 r = (len([1 for p in ps if len(p) == len(set(p))]),
