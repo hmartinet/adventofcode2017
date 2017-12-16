@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
 class Generator():
-    
+
     def __init__(self, *args):
         self.f1, self.f2, self.val, self.mod = args
 
@@ -23,6 +24,7 @@ def resolve(g1, g2, iters):
         count += g1.bin16() == g2.bin16()
         i += 1
     return count
+
 
 r1 = resolve(Generator(16807, 2147483647, 116, 1),
              Generator(48271, 2147483647, 299, 1),
