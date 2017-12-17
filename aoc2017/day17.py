@@ -5,19 +5,16 @@ steps = 335
 
 buf = [0]
 cur = 0
-for i in range(2017):
+for i in range(1, 2018):
     cur = ((cur + steps) % len(buf)) + 1
-    buf.insert(cur, i + 1)
+    buf.insert(cur, i)
 r1 = buf[cur+1]
 
-lbuf = 1
-pos1 = None
+r2 = None
 cur = 0
-for i in range(50000000):
+for lbuf in range(1, 50000000):
     cur = ((cur + steps) % lbuf) + 1
     if cur == 1:
-        pos1 = i + 1
-    lbuf += 1
-r2 = pos1
+        r2 = lbuf
 
 print("Solutions: [{}] [{}]".format(r1, r2))
