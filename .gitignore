@@ -1,3 +1,5 @@
 .project
+.cache
 /.settings
 .pydevproject
+__pycache__
