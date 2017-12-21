@@ -80,3 +80,52 @@ def test_day09():
     assert days.day09.solve(sio("<!!!>>"))[1] == 0
     assert days.day09.solve(sio('<{o"i!a,<{i<a>'))[1] == 10
     assert days.day09.solve(open('input/day09')) == (11846, 6285)
+
+
+def test_day10():
+    pass
+
+
+def test_day11():
+    pass
+
+
+def test_day12():
+    pass
+
+
+def test_day13():
+    pass
+
+
+def test_day14():
+    pass
+
+
+def test_day15():
+    pass
+
+
+def test_day16():
+    pass
+
+
+def test_day17():
+    pass
+
+
+def test_day18():
+    pass
+
+
+def test_day19():
+    pass
+
+
+def test_day20():
+    pass
+
+
+def test_day21():
+    assert days.day21.solve_for(open('input/day21.test'), 2)[0] == 12
+    assert days.day21.solve(open('input/day21')) == (167, 2425195)
