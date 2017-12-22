@@ -3,46 +3,49 @@
 
 import re
 from recordclass import recordclass
+from math import sqrt
+import itertools as it
 
 Part = recordclass('Attrs', 'p v a')
 V = recordclass('Vector', 'x y z')
+Eq = recordclass('Equation', 'a b c')
 parser = re.compile(r'p=<(-?[0-9]+),(-?[0-9]+),(-?[0-9]+)>, '
                     r'v=<(-?[0-9]+),(-?[0-9]+),(-?[0-9]+)>, '
                     r'a=<(-?[0-9]+),(-?[0-9]+),(-?[0-9]+)')
 
 
-def tick(parts):
-    c = None
-    for i, p in enumerate(parts):
-        p.v.x += p.a.x
-        p.v.y += p.a.y
-        p.v.z += p.a.z
-        p.p.x += p.v.x
-        p.p.y += p.v.y
-        p.p.z += p.v.z
-        print((p, abs(p.p.x) + abs(p.p.y) + abs(p.p.z)))
-        if not c or abs(p.p.x) + abs(p.p.y) + abs(p.p.z) < c[1]:
-            c = i, abs(p.p.x) + abs(p.p.y) + abs(p.p.z)
-    return c
+def equation(p1, p2, d):
+    a = .5 * (p1.a[d] - p2.a[d])
+    return Eq(a, p1.v[d] - p2.v[d] + a, p1.p[d] - p2.p[d])
 
 
-def add(v1, v2):
-    return V(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z)
+def eq(f1, f2):
+    return abs(f1 - f2) < 0.00001
 
 
-def sub(v1, v2):
-    return V(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z)
-
-
-def divide(v1, v2):
-    if v1.x / v2.x == v1.y / v2.y == v1.z / v2.z:
-        return v1.x / v2.x
-    else:
-        raise
+def rnd(f):
+    return round(f, 5)
 
 
 def collide(p1, p2):
-    return divide(sub(p2.p, p1.p), add(p1.v, p2.v))
+    r = []
+    for d in range(3):
+        if eq(p1.a[d], p2.a[d]):
+            if eq(p1.v[d], p2.v[d]):
+                if not eq(p1.p[d], p2.p[d]):
+                    return None
+            else:
+                r.append({rnd((p1.p[d] - p2.p[d]) / (p1.v[d] - p2.v[d]))})
+            continue
+        e = equation(p1, p2, d)
+        delta = e.b ** 2 - 4 * e.a * e.c
+        if delta < 0:
+            return None
+        sd = sqrt(delta)
+        r.append({rnd((-e.b + sd) / (2 * e.a)), rnd((-e.b - sd) / (2 * e.a))})
+
+    n = tuple(filter(lambda x: x >= 0, set.intersection(*r)))
+    return min(n) if n else None
 
 
 def solve(din):
@@ -55,20 +58,19 @@ def solve(din):
             V(*[int(v) for v in g[6:9]])))
 
     collisions = {}
-    for i, p1 in enumerate(parts):
-        for p2 in parts[i + 1:]:
-            try:
-                n = collide(p1, p2)
-                collisions[n] = collisions.get(n, []) + [(p1, p2)]
-            except Exception:
-                pass
+    for p1, p2 in it.combinations(parts, 2):
+        n = collide(p1, p2)
+        if n is not None:
+            collisions[n] = collisions.get(n, []) + [(repr(p1), repr(p2))]
 
-    sparts = parts[:]
+    print(sorted(collisions.keys()))
+
+    sparts = set(repr(p) for p in parts)
     for n in sorted(collisions.keys()):
+        tr = set()
         for pair in collisions[n]:
-            if pair[0] in sparts and pair[1] in sparts:
-                print(pair)
-                sparts.remove(pair[0])
-                sparts.remove(pair[1])
+            if len(sparts & set(pair)) == 2:
+                tr |= set(pair)
+        sparts -= tr
 
     return 1, len(sparts)
