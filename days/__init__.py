@@ -21,3 +21,4 @@ import days.day17
 import days.day18
 import days.day19
 import days.day21
+import days.day22
