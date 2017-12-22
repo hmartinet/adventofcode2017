@@ -129,3 +129,19 @@ def test_day20():
 def test_day21():
     assert days.day21.solve_for(open('input/day21.test'), 2)[0] == 12
     assert days.day21.solve(open('input/day21')) == (167, 2425195)
+
+
+def test_day22():
+    d = days.day22
+    with open('input/day22.test') as f:
+        assert d.solve_for(d.parse(f), 7, 0) == 5
+    with open('input/day22.test') as f:
+        assert d.solve_for(d.parse(f), 70, 0) == 41
+    with open('input/day22.test') as f:
+        assert d.solve_for(d.parse(f), 10000, 0) == 5587
+    with open('input/day22.test') as f:
+        assert d.solve_for(d.parse(f), 100, 1) == 26
+    with open('input/day22.test') as f:
+        assert d.solve_for(d.parse(f), 10000000, 1) == 2511944
+    with open('input/day22') as f:
+        assert d.solve(f) == (5176, 2512017)
