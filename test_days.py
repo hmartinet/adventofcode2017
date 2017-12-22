@@ -4,7 +4,7 @@ from io import StringIO as sio
 import days
 
 
-def dtest_day01():
+def test_day01():
     assert days.day01.solve(sio("1122"))[0] == 3
     assert days.day01.solve(sio("1111"))[0] == 4
     assert days.day01.solve(sio("1234"))[0] == 0
@@ -17,13 +17,13 @@ def dtest_day01():
     assert days.day01.solve(open('input/day01')) == (1175, 1166)
 
 
-def dtest_day02():
+def test_day02():
     assert days.day02.solve(open('input/day02.test1'))[0] == 18
     assert days.day02.solve(open('input/day02.test2'))[1] == 9
     assert days.day02.solve(open('input/day02')) == (45972, 326)
 
 
-def dtest_day03():
+def test_day03():
     assert days.day03.solve(sio("1"))[0] == 0
     assert days.day03.solve(sio("12"))[0] == 3
     assert days.day03.solve(sio("23"))[0] == 2
@@ -31,7 +31,7 @@ def dtest_day03():
     assert days.day03.solve(open('input/day03')) == (326, 363010)
 
 
-def dtest_day04():
+def test_day04():
     assert days.day04.solve(sio("aa bb cc dd ee"))[0] == 1
     assert days.day04.solve(sio("aa bb cc dd aa"))[0] == 0
     assert days.day04.solve(sio("aa bb cc dd aaa"))[0] == 1
@@ -43,27 +43,27 @@ def dtest_day04():
     assert days.day04.solve(open('input/day04')) == (386, 208)
 
 
-def dtest_day05():
+def test_day05():
     assert days.day05.solve(open('input/day05.test')) == (5, 10)
     assert days.day05.solve(open('input/day05')) == (378980, 26889114)
 
 
-def dtest_day06():
+def test_day06():
     assert days.day06.solve(sio("0\t2\t7\t0")) == (5, 4)
     assert days.day06.solve(open('input/day06')) == (7864, 1695)
 
 
-def dtest_day07():
+def test_day07():
     assert days.day07.solve(open('input/day07.test')) == ('tknk', 60)
     assert days.day07.solve(open('input/day07')) == ('eqgvf', 757)
 
 
-def dtest_day08():
+def test_day08():
     assert days.day08.solve(open('input/day08.test')) == (1, 10)
     assert days.day08.solve(open('input/day08')) == (4163, 5347)
 
 
-def dtest_day09():
+def test_day09():
     assert days.day09.solve(sio("{}"))[0] == 1
     assert days.day09.solve(sio("{{{}}}"))[0] == 6
     assert days.day09.solve(sio("{{},{}}"))[0] == 5
@@ -82,43 +82,43 @@ def dtest_day09():
     assert days.day09.solve(open('input/day09')) == (11846, 6285)
 
 
-def dtest_day10():
+def test_day10():
     pass
 
 
-def dtest_day11():
+def test_day11():
     pass
 
 
-def dtest_day12():
+def test_day12():
     pass
 
 
-def dtest_day13():
+def test_day13():
     pass
 
 
-def dtest_day14():
+def test_day14():
     pass
 
 
-def dtest_day15():
+def test_day15():
     pass
 
 
-def dtest_day16():
+def test_day16():
     pass
 
 
-def dtest_day17():
+def test_day17():
     pass
 
 
-def dtest_day18():
+def test_day18():
     pass
 
 
-def dtest_day19():
+def test_day19():
     pass
 
 
@@ -131,14 +131,14 @@ def test_day20():
         assert days.day20.solve(f) == (243, 648)
 
 
-def dtest_day21():
+def test_day21():
     with open('input/day21.test') as f:
         assert days.day21.solve_for(f, 2)[0] == 12
     with open('input/day21') as f:
         assert days.day21.solve(f) == (167, 2425195)
 
 
-def dtest_day22():
+def test_day22():
     d = days.day22
     with open('input/day22.test') as f:
         assert d.solve_for(d.parse(f), 7, 0) == 5
