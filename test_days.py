@@ -152,3 +152,9 @@ def test_day22():
         assert d.solve_for(d.parse(f), 10000000, 1) == 2511944
     with open('input/day22') as f:
         assert d.solve(f) == (5176, 2512017)
+
+
+def test_day23():
+    d = days.day23
+    with open('input/day23') as f:
+        assert d.solve(f) == (6724, 903)
