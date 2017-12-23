@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from io import StringIO as sio
+import logging
 import days
+
+logging.basicConfig(level=logging.DEBUG)
+log = logging.getLogger('tests')
 
 
 def test_day01():
+    log.info("test_day01")
     d = days.day01
     assert d.solve(sio("1122"))[0] == 3
     assert d.solve(sio("1111"))[0] == 4
@@ -20,6 +25,7 @@ def test_day01():
 
 
 def test_day02():
+    log.info("test_day02")
     d = days.day02
     with open('input/day02.test1') as f:
         assert d.solve(f)[0] == 18
@@ -30,6 +36,7 @@ def test_day02():
 
 
 def test_day03():
+    log.info("test_day03")
     d = days.day03
     assert d.solve(sio("1"))[0] == 0
     assert d.solve(sio("12"))[0] == 3
@@ -40,6 +47,7 @@ def test_day03():
 
 
 def test_day04():
+    log.info("test_day04")
     d = days.day04
     assert d.solve(sio("aa bb cc dd ee"))[0] == 1
     assert d.solve(sio("aa bb cc dd aa"))[0] == 0
@@ -54,6 +62,7 @@ def test_day04():
 
 
 def test_day05():
+    log.info("test_day05")
     d = days.day05
     with open('input/day05.test') as f:
         assert d.solve(f) == (5, 10)
@@ -62,6 +71,7 @@ def test_day05():
 
 
 def test_day06():
+    log.info("test_day06")
     d = days.day06
     assert d.solve(sio("0\t2\t7\t0")) == (5, 4)
     with open('input/day06') as f:
@@ -69,6 +79,7 @@ def test_day06():
 
 
 def test_day07():
+    log.info("test_day07")
     d = days.day07
     with open('input/day07.test') as f:
         assert d.solve(f) == ('tknk', 60)
@@ -77,6 +88,7 @@ def test_day07():
 
 
 def test_day08():
+    log.info("test_day8")
     d = days.day08
     with open('input/day08.test') as f:
         assert d.solve(f) == (1, 10)
@@ -85,6 +97,7 @@ def test_day08():
 
 
 def test_day09():
+    log.info("test_day09")
     d = days.day09
     assert d.solve(sio("{}"))[0] == 1
     assert d.solve(sio("{{{}}}"))[0] == 6
@@ -106,6 +119,7 @@ def test_day09():
 
 
 def test_day10():
+    log.info("test_day010")
     from common import knot
     h = knot.knot([int(n) for n in "3, 4, 1, 5".split(',')], 1, [], 5)
     assert h[0] * h[1] == 12
@@ -119,6 +133,7 @@ def test_day10():
 
 
 def test_day11():
+    log.info("test_day11")
     d = days.day11
     assert d.solve(sio("ne,ne,ne"))[0] == 3
     assert d.solve(sio("ne,ne,sw,sw"))[0] == 0
@@ -129,6 +144,7 @@ def test_day11():
 
 
 def test_day12():
+    log.info("test_day12")
     d = days.day12
     with open('input/day12.test') as f:
         assert d.solve(f) == (6, 2)
@@ -137,6 +153,7 @@ def test_day12():
 
 
 def test_day13():
+    log.info("test_day13")
     d = days.day13
     with open('input/day13.test') as f:
         assert d.solve(f) == (24, 10)
@@ -145,6 +162,7 @@ def test_day13():
 
 
 def test_day14():
+    log.info("test_day14")
     d = days.day14
     with open('input/day14.test') as f:
         assert d.solve(f) == (8108, 1242)
@@ -153,6 +171,7 @@ def test_day14():
 
 
 def test_day15():
+    log.info("test_day15")
     d = days.day15
     with open('input/day15.test') as f:
         assert d.solve(f) == (588, 309)
@@ -161,6 +180,7 @@ def test_day15():
 
 
 def test_day16():
+    log.info("test_day16")
     d = days.day16
     with open('input/day16.test') as f:
         ops = d.parse_input(f)
@@ -171,6 +191,7 @@ def test_day16():
 
 
 def test_day17():
+    log.info("test_day17")
     d = days.day17
     assert d.solve(sio("3"))[0] == 638
     with open('input/day17') as f:
@@ -178,6 +199,7 @@ def test_day17():
 
 
 def test_day18():
+    log.info("test_day18")
     d = days.day18
     with open('input/day18.test1') as f:
         assert d.solve(f)[0] == 4
@@ -188,6 +210,7 @@ def test_day18():
 
 
 def test_day19():
+    log.info("test_day19")
     d = days.day19
     with open('input/day19.test') as f:
         assert d.solve(f) == ('ABCDEF', 38)
@@ -196,6 +219,7 @@ def test_day19():
 
 
 def test_day20():
+    log.info("test_day20")
     d = days.day20
     with open('input/day20.test1') as f:
         assert d.solve(f)[0] == 0
@@ -206,6 +230,7 @@ def test_day20():
 
 
 def test_day21():
+    log.info("test_day21")
     d = days.day21
     with open('input/day21.test') as f:
         assert d.solve_for(f, 2)[0] == 12
@@ -214,6 +239,7 @@ def test_day21():
 
 
 def test_day22():
+    log.info("test_day22")
     d = days.day22
     with open('input/day22.test') as f:
         assert d.solve_for(d.parse(f), 7, 0) == 5
@@ -230,6 +256,7 @@ def test_day22():
 
 
 def test_day23():
+    log.info("test_day23")
     d = days.day23
     with open('input/day23') as f:
         assert d.solve(f) == (6724, 903)
