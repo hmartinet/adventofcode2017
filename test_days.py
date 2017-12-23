@@ -88,7 +88,7 @@ def test_day07():
 
 
 def test_day08():
-    log.info("test_day8")
+    log.info("test_day08")
     d = days.day08
     with open('input/day08.test') as f:
         assert d.solve(f) == (1, 10)
@@ -119,7 +119,7 @@ def test_day09():
 
 
 def test_day10():
-    log.info("test_day010")
+    log.info("test_day10")
     from common import knot
     h = knot.knot([int(n) for n in "3, 4, 1, 5".split(',')], 1, [], 5)
     assert h[0] * h[1] == 12
