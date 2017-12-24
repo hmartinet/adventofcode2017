@@ -36,4 +36,4 @@ def solve(din):
         cr = add(cr, dr)
         r[1] += 1
 
-    return r
+    return tuple(r)

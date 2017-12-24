@@ -14,9 +14,8 @@ def parse_input(din):
 
 
 class Operator():
-    progs = 'abcdefghijklmnop'
-
-    def __init__(self, ops):
+    def __init__(self, ops, progs='abcdefghijklmnop'):
+        self.progs = progs
         self.fcnt = {'s': lambda a, p: self.spin(a, p),
                      'x': lambda a, p: self.exchange(*a, p),
                      'p': lambda a, p: self.partner(*a, p)}

@@ -1,7 +1,7 @@
 language: python
 python:
   - "3.6"
-script: python -m pytest
+script: python -m pytest -s
 branches:
   only:
     - master

@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
 
-def knot(data, rnd=64, ext=[17, 31, 73, 47, 23]):
+def knot(data, rnd=64, ext=[17, 31, 73, 47, 23], base=256):
     lengths = data[:]
     lengths.extend(ext)
-    h = list(range(256))
+    h = list(range(base))
     cr, skip = 0, 0
     for _ in range(rnd):
         for l in lengths:
-            sub = [h[(cr + i) % 256] for i in range(l)][::-1]
+            sub = [h[(cr + i) % base] for i in range(l)][::-1]
             for i in range(l):
-                h[(cr + i) % 256] = sub[i]
-            cr, skip = (cr + l + skip) % 256, skip + 1
+                h[(cr + i) % base] = sub[i]
+            cr, skip = (cr + l + skip) % base, skip + 1
     return h
 
 
