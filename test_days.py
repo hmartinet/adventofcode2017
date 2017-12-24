@@ -262,3 +262,12 @@ def test_day23():
     d = days.day23
     with open('input/day23') as f:
         assert d.solve(f) == (6724, 903)
+
+
+def test_day24():
+    log.info("test_day24")
+    d = days.day24
+    with open('input/day24.test') as f:
+        assert d.solve(f) == (31, 19)
+    with open('input/day24') as f:
+        assert d.solve(f) == (1906, 1824)
