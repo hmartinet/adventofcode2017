@@ -123,10 +123,14 @@ def test_day10():
     from common import knot
     h = knot.knot([int(n) for n in "3, 4, 1, 5".split(',')], 1, [], 5)
     assert h[0] * h[1] == 12
-    assert knot.hstr(knot.knot([ord(i) for i in ""])) == 'a2582a3a0e66e6e86e3812dcb672a272'
-    assert knot.hstr(knot.knot([ord(i) for i in "AoC 2017"])) == '33efeb34ea91902bb2f59c9920caa6cd'
-    assert knot.hstr(knot.knot([ord(i) for i in "1,2,3"])) == '3efbe78a8d82f29979031a4aa0b16a9d'
-    assert knot.hstr(knot.knot([ord(i) for i in "1,2,4"])) == '63960835bcdc130f0b66d7ff4f6a5a8e'
+    assert knot.hstr(knot.knot(
+            [ord(i) for i in ""])) == 'a2582a3a0e66e6e86e3812dcb672a272'
+    assert knot.hstr(knot.knot(
+            [ord(i) for i in "AoC 2017"])) == '33efeb34ea91902bb2f59c9920caa6cd'
+    assert knot.hstr(knot.knot(
+            [ord(i) for i in "1,2,3"])) == '3efbe78a8d82f29979031a4aa0b16a9d'
+    assert knot.hstr(knot.knot(
+            [ord(i) for i in "1,2,4"])) == '63960835bcdc130f0b66d7ff4f6a5a8e'
     d = days.day10
     with open('input/day10') as f:
         assert d.solve(f) == (4480, 'c500ffe015c83b60fad2e4b7d59dabc4')
@@ -271,3 +275,12 @@ def test_day24():
         assert d.solve(f) == (31, 19)
     with open('input/day24') as f:
         assert d.solve(f) == (1906, 1824)
+
+
+def test_day25():
+    log.info("test_day25")
+    d = days.day25
+    with open('input/day25.test') as f:
+        assert d.solve(f)[0] == 3
+    with open('input/day25') as f:
+        assert d.solve(f)[0] == 633
