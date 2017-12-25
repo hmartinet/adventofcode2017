@@ -13,5 +13,6 @@ def run(components, side0, mode):
 
 
 def solve(din):
-    components = [tuple([int(n) for n in c.strip().split('/')]) for c in din.readlines()]
+    components = [tuple([int(n) for n in c.strip().split('/')])
+                  for c in din.readlines()]
     return tuple(run(components, 0, m)[0] for m in (0, 1))

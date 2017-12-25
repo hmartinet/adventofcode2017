@@ -25,3 +25,4 @@ import days.day21
 import days.day22
 import days.day23
 import days.day24
+import days.day25
